@@ -1,7 +1,7 @@
 //cohort
-const COHORT = "2403-ftb-wt-web-pt";
+const COHORT = "2403-ftb-et-web-pt";
 // API URL
-const API_URL = `https://fsa-crud-2aa9294fe819.herokuapp.com/api/2403-ftb-wt-web-pt/events`;
+const API_URL = `https://fsa-crud-2aa9294fe819.herokuapp.com/api/2403-ftb-et-web-pt/events`;
 
 /**
  * 👉 STEP 1: Create an object called state that holds an array for recipe objects
@@ -54,7 +54,7 @@ const fetchAllEvents = async () => {
         "description": "Some good description",
  }
  */
-const createNewEvents = async (name, description, location, date) => {
+const createNewEvents = async (name, description, date, location) => {
   try {
     const response = await fetch(API_URL, {
       method: "POST",
@@ -62,10 +62,10 @@ const createNewEvents = async (name, description, location, date) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name, //shorthand when variable is same name as key of object
+        name,
         description,
+        date: new Date(date).toISOString(),
         location,
-        date
         // date: new Date(date).toISOString()
       }),
     });
